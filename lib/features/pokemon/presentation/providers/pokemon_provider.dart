@@ -1,4 +1,4 @@
-import 'package:data_connection_checker_tv/data_connection_checker.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -28,7 +28,7 @@ class PokemonProvider extends ChangeNotifier {
       remoteDataSource: PokemonRemoteDataSourceImpl(dio: Dio()),
       localDataSource: PokemonLocalDataSourceImpl(
           sharedPreferences: await SharedPreferences.getInstance()),
-      networkInfo: NetworkInfoImpl(DataConnectionChecker()),
+      networkInfo: NetworkInfoImpl(Connectivity()),
     );
 
     final failureOrPokemon = await GetPokemon(repository).call(
